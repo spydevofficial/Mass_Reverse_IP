@@ -23,7 +23,7 @@ If you want to manually install the required packages using your preferrec packa
 ---
 **Linux**
 ```bash
-git clone https://github.com/rootinabox/Mass-Websites-Grabber-V2
+git clone https://github.com/spydevofficial/Mass_Reverse_IP/
 cd Mass_Reverse_IP
 pip install validators
 pip install colorama
