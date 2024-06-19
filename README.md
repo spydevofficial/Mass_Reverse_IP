@@ -32,8 +32,8 @@ python spyreverse.py
 **Windows**
 ```
 install python 3 ( add python to path )
-pip install validators
-pip install colorama
+python -m pip install validators
+python -m pip install colorama
 cd Mass_Reverse_IP
 python spyreverse.py
 ```
