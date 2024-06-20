@@ -145,26 +145,28 @@ def main():
     print(f"Number of websites: {website_count}")
     print(f"Number of IPs : {IPs_count}")
 
-    print(f"Converting {website_count} URLs to IPs")
+    if website_count > 0:
+        print(f"Converting {website_count} URLs to IPs")
 
-    website_queue = Queue()
-    output_file = "output.txt"
-    for i, website in enumerate(website_list, start=1):
-        website_queue.put((i, website))
+        website_queue = Queue()
+        output_file = "output.txt"
+        for i, website in enumerate(website_list, start=1):
+            website_queue.put((i, website))
 
-    for _ in range(10):  # 10 threads for processing websites
-        thread = threading.Thread(target=process_websites_thread, args=(website_queue, output_file, website_count))
-        thread.start()
+        for _ in range(10):  # 10 threads for processing websites
+            thread = threading.Thread(target=process_websites_thread, args=(website_queue, output_file, website_count))
+            thread.start()
 
-    website_queue.join()
+        website_queue.join()
 
-    with open(output_file) as f:
-        unique_ips = len(set(f.readlines()))
-    print(f"\nTotal IPs: {unique_ips}")
+        with open(output_file) as f:
+            unique_ips = len(set(f.readlines()))
+        print(f"\nTotal IPs: {unique_ips}")
 
-    print("Output written to output.txt")
+        print("Output written to output.txt")
 
-    extract_domains_from_ips(output_file)
+    if IPs_count > 0 or website_count > 0:
+        extract_domains_from_ips('output.txt' if website_count > 0 else file_path)
 
 
 main()
